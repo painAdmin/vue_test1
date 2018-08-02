@@ -19,6 +19,8 @@
 </template>
 
 <script>
+
+  import storage from './module/storage.js';
   /*
   场景： 表单中使用
    mvvm 双向数据绑定
@@ -40,18 +42,18 @@ export default {
 
           var item={"title":this.todo,"checked":false};
           this.list.push(item);
-          localStorage.setItem('key',JSON.stringify(this.list))
+          storage.set('key',this.list);
       },
       del(val){
         this.list.splice(val,1);  //在数组 val位置 删除一个元素
-        localStorage.setItem('key',JSON.stringify(this.list));
+        storage.set('key',this.list);
       },
       saveList(){
-          localStorage.setItem('key',JSON.stringify(this.list));
+          storage.set('key',this.list);
       }
 
   },mounted(){
-      var list=JSON.parse(localStorage.getItem('key'));
+      var list=storage.get('key');
       if(list){
         this.list=list;
       }

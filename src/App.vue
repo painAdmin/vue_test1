@@ -1,70 +1,37 @@
 <template>
   <div id="app">
-    <input type="text" v-model="todo" @keyDown="add($event)"><button @click="add()">+添加</button>
-    <hr>
-    <h1>正在进行中</h1>
-    <ul>
-      <li v-for="(item,key) in list"  v-if="item.checked==false">
-        <input type="checkbox" v-model="item.checked" @change="saveList()"/>{{item.title}} - ---<button @click="del(key)">-删除</button>
-      </li>
-    </ul>
-    <hr>
-    <h1>已完成</h1>
-    <ul>
-      <li v-for="(item,key) in list"  v-if="item.checked==true">
-        <input type="checkbox" v-model="item.checked" @change="saveList()"/>{{item.title}} - ---<button @click="del(key)">-删除</button>
-      </li>
-    </ul>
+    <h1>测试style</h1>
+    {{msg}}
+    <!--第三步 在模板中使用-->
+    <v-home></v-home>
+    <v-news></v-news>
   </div>
 </template>
 
 <script>
+  /*第一步 引入组件*/
+  import Home from './components/Home.vue';
+  import News from './components/News.vue';
 
-  import storage from './module/storage.js';
-  /*
-  场景： 表单中使用
-   mvvm 双向数据绑定
-   model -》 view
-   view -》 model
-   */
 export default {
   name: 'App',
   data(){
       return{
-        todo:"",
-        list:[]
+         msg:"测试双向数据绑定"
     }
-  },methods:{
-      add(e){
-//         if(!e || e.keyCode!=13){
-//            return
-//         }
-
-          var item={"title":this.todo,"checked":false};
-          this.list.push(item);
-          storage.set('key',this.list);
-      },
-      del(val){
-        this.list.splice(val,1);  //在数组 val位置 删除一个元素
-        storage.set('key',this.list);
-      },
-      saveList(){
-          storage.set('key',this.list);
-      }
-
-  },mounted(){
-      var list=storage.get('key');
-      if(list){
-        this.list=list;
-      }
-
-  }
+  },
+  /*第二部 注册组件*/
+  components:{
+    'v-home':Home,
+    'v-news':News
+  },
+//  mounted(){//页面刷新 时候触发
+//      alert('生命周期');
+//  }
 
 }
 </script>
 
 <style>
-  .red{
-    color: red;
-  }
+
 </style>

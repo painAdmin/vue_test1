@@ -1,16 +1,9 @@
 <template>
   <!--所有内容被根节点包围-->
   <div id="home">
-    <v-header></v-header>
-          <h1 v-text="msg"></h1>
-          <button @click="out()">按钮</button>
-
-    <h1 v-text="msg1"></h1>
-    <button @click="change()">改变msg1</button>
-
-    <v-lify v-if="flag"></v-lify>
-
-    <button @click="flag=!flag">挂载以及卸载lify</button>
+     <v-header></v-header>
+      <h1>{{msg}}</h1>
+      <button @click="req()">请求数据</button>
   </div>
 
 </template>
@@ -21,42 +14,25 @@
   export default{
       data(){
           return{
-            msg:"我是首页组件测试绑定",
-            msg1:'我是生命周期演示',
-            flag:''
+            msg:"我是首页组件"
+
         }
       },methods:{
-          out(){
-              alert(this.msg);
-          },
-          change(){
-              this.msg1='改变后'
-          },
-          delModule(){
-              this.flag=false
+          req(){
+             var url="http://localhost:8082/getData";
+             this.$http.get(url).then(function(response){
+                 console.log("成功"+response);
+             },function(error){
+                 console.log("失败"+error);
+             });
           }
-
     },components:{
-          'v-header':Header,
-          'v-lify':Lify
-    },beforeCreate(){
-          console.log('实例创建之前')
-    },created(){
-        console.log('实例创建之后')
-    },beforeMount(){
-        console.log('DOM渲染之前')
+          'v-header':Header
     },mounted(){
-        console.log('DOM渲染之后')
-    },beforeUpdate(){
-        console.log('数据更新之前')
-    },updated(){
-       console.log('数据更新之后')
-    },
-    beforDestory(){
-        console.log('Vue销毁之前')
-    },destoryed(){
-        console.log('Vue销毁之后')
+          //生命周期函数内调用方 直接 this
+//          this.req();
     }
+
   }
 
 </script>

@@ -1,8 +1,9 @@
 <template>
   <!--所有内容被根节点包围-->
   <div id="home">
-    <v-header :title="title" :test="test" :run="run" :home="this"></v-header>
-    <h1>{{msg}}</h1>
+      <v-header ref="Header"></v-header>
+      <h1>{{msg}}</h1>
+    <button @click="getChild()">获取子组件的属性+方法</button>
   </div>
 
 </template>
@@ -12,17 +13,20 @@
   export default{
       data(){
           return{
-            msg:"我是首页组件测试绑定",
-            title:'首页数据',
-            test:'绑定无关属性'
+            msg:"我是首页组件"
         }
       },methods:{
-          run(val){
-            alert('首页组件run方法,传入子组件中的参数'+val);
+          getChild(){
+              console.log(this.$refs.Header.msg);
+              this.$refs.Header.run();
+          },
+          run(){
+              alert('父组件run方法')
           }
 
-    },components:{
-          'v-header':Header
+    }
+      ,components:{
+         'v-header':Header,
     }
   }
 

@@ -1,8 +1,7 @@
 <template>
   <div id="header">
-        <h1>{{msg}}  ::: {{title}}::::{{test}}</h1>
-    <button @click="run('子组件方法入参')">方法执行</button>
-    <button @click="getParent()">获取父组件数据+方法+dom</button>
+      <h1>{{msg}}</h1>
+    <button @click="getParent()">获取父组件的属性+方法</button>
   </div>
 </template>
 <script>
@@ -12,12 +11,15 @@
             msg:"我是头部组件"
           }
       },methods:{
+          run(){
+              alert('header 组件方法！');
+          },
           getParent(){
-//              alert(this.title);
-              console.log("执行结束:"+this.home.title);
+              console.log(this.$parent.msg);
+              this.$parent.run();
           }
 
-    },props:['title','test','run','home']
+    }
   }
 </script>
 <style scoped>

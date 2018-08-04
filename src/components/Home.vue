@@ -1,32 +1,25 @@
 <template>
   <!--所有内容被根节点包围-->
   <div id="home">
-      <v-header ref="Header"></v-header>
       <h1>{{msg}}</h1>
-    <button @click="getChild()">获取子组件的属性+方法</button>
+    <button @click="send()">向news组件传值</button>
   </div>
 
 </template>
 
 <script>
-  import Header from './Header.vue'
+  import VueEvent from '../module/vueEvent';
   export default{
       data(){
           return{
             msg:"我是首页组件"
         }
       },methods:{
-          getChild(){
-              console.log(this.$refs.Header.msg);
-              this.$refs.Header.run();
-          },
-          run(){
-              alert('父组件run方法')
-          }
-
-    }
-      ,components:{
-         'v-header':Header,
+         send(){
+             VueEvent.$emit('id-select',1);
+         }
+    },components:{
+       'vue-event':VueEvent
     }
   }
 

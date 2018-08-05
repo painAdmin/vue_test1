@@ -2,6 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import VueResource from 'vue-resource'
+
 
 // vue 使用步骤
 // 1）引入vue组件
@@ -9,13 +11,20 @@ import VueRouter from 'vue-router'
 // 2) 使用vue
 Vue.use(VueRouter)
 
+// 使用VueResource
+Vue.use(VueResource)
+
 // 3) 创建 组件
 import Home from './components/Home.vue'
 import News from './components/News.vue'
+import Content from './components/Content.vue'
+import ShopContent from './components/ShopContent.vue'
 // 4) 配置路由
 const  routes=[
   {path:'/home',component:Home},
   {path:'/news',component:News},
+  {path:'/content/:aid',component:Content},
+  {path:'/shopContent',component:ShopContent},
   {path:'*',redirect:'/home'}
 ]
 // 5 实例化VueRouter

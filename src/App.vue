@@ -1,30 +1,22 @@
 <template>
   <div id="app">
-
+    <router-link to="/home">首页</router-link>
+    <router-link to="/news">新闻</router-link>
     <!--第三步 在模板中使用-->
-    <v-home></v-home>
     <hr>
-    <v-news></v-news>
+    <router-view></router-view>
+    <hr>
   </div>
 </template>
 
 <script>
-  /*第一步 引入组件*/
-  import Home from './components/Home.vue';
-  import News from './components/News.vue';
 
 export default {
   name: 'App',
   data(){
       return{
     }
-  },
-  /*第二部 注册组件*/
-  components:{
-    'v-home':Home,
-    'v-news':News
   }
-
 }
 </script>
 

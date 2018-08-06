@@ -2,11 +2,7 @@
   <!--所有内容被根节点包围-->
   <div id="home">
       <h1>{{msg}}</h1>
-    <ul>
-      <li v-for="(item,key) in list">
-        <router-link :to="'/shopContent?aid='+key">{{item}}---{{key}}</router-link>
-      </li>
-    </ul>
+    <button @click="toNews()">通过js跳转到新闻</button>
   </div>
 
 </template>
@@ -19,7 +15,10 @@
             list:['1atest','ipad','苹果']
         }
       },methods:{
-
+        toNews(){
+//           this.$router.push({path:'/news'})
+          this.$router.push({name:'news'})
+        }
     }
   }
 

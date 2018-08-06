@@ -22,14 +22,15 @@ import ShopContent from './components/ShopContent.vue'
 // 4) 配置路由
 const  routes=[
   {path:'/home',component:Home},
-  {path:'/news',component:News},
+  {path:'/news',component:News,name:'news'},
   {path:'/content/:aid',component:Content},
   {path:'/shopContent',component:ShopContent},
   {path:'*',redirect:'/home'}
 ]
 // 5 实例化VueRouter
 const router=new VueRouter({
-    routes      // 相当于 routes:routes
+    routes,      // 相当于 routes:routes
+    mode:'history'
 })
 // 6 挂载路由
 /* eslint-disable no-new */

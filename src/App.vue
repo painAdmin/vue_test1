@@ -3,6 +3,7 @@
     <header class="header">
       <router-link to="/home">首页</router-link>
       <router-link to="/news">新闻</router-link>
+      <router-link to="/user/userAdd">用户中心</router-link>
     </header>
 
     <!--第三步 在模板中使用-->

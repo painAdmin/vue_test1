@@ -19,12 +19,26 @@ import Home from './components/Home.vue'
 import News from './components/News.vue'
 import Content from './components/Content.vue'
 import ShopContent from './components/ShopContent.vue'
+
+import User from './components/User.vue'
+
+import UserAdd from './components/user/UserAdd.vue'
+import UserList from './components/user/UserList.vue'
+
 // 4) 配置路由
 const  routes=[
   {path:'/home',component:Home},
   {path:'/news',component:News,name:'news'},
   {path:'/content/:aid',component:Content},
   {path:'/shopContent',component:ShopContent},
+  {
+    path:'/user',
+    component:User,
+    children:[
+      {path:'userAdd',component:UserAdd},
+      {path:'userList',component:UserList}
+    ]
+  },
   {path:'*',redirect:'/home'}
 ]
 // 5 实例化VueRouter
